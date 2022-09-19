@@ -2,14 +2,14 @@
 """
 zoom_array function
 """
-from typing import Tuple
+from typing import Tuple, List
 
 
-def zoom_array(lst: Tuple, factor: int = 2) -> Tuple:
+def zoom_array(lst: Tuple, factor: int = 2) -> List:
     """
     Use mypy to validate
     """
-    zoomed_in: Tuple = [
+    zoomed_in: List = [
         item for item in lst
         for i in range(factor)
     ]
@@ -18,6 +18,6 @@ def zoom_array(lst: Tuple, factor: int = 2) -> Tuple:
 
 array = [12, 72, 91]
 
-zoom_2x = zoom_array(array)
+zoom_2x = zoom_array(tuple(array))
 
-zoom_3x = zoom_array(array, 3.0)
+zoom_3x = zoom_array(tuple(array), int(3.0))
