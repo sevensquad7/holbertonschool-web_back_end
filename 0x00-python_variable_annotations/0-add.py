@@ -4,8 +4,8 @@ add function
 """
 
 
-def add(a : float, b : float)  -> float:
+def add(a: float, b: float) -> float:
     """
     return the sum of two numbers floats (a, b)
     """
-    return a + b;
+    return a + b

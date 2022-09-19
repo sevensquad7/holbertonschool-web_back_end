@@ -4,8 +4,8 @@ floor function
 """
 
 
-def floor(n:float) -> int:
+def floor(n: float) -> int:
     """
     return traslate number float -> int
     """
-    return int(n);
+    return int(n)
