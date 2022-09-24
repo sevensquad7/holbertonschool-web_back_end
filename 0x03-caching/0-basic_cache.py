@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-is a caching system
+BasicCache is a caching system
 """
 from base_caching import BaseCaching
 
@@ -16,7 +16,7 @@ class BasicCache(BaseCaching):
         if not key or not item:
             pass
         else:
-            self.cache_data[key]=item
+            self.cache_data[key] = item
 
     def get(self, key):
         """
