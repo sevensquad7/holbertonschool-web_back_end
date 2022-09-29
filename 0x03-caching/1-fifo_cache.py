@@ -19,7 +19,7 @@ class FIFOCache(BaseCaching):
         """
         if doesn’t exist, not do anything
         """
-        MAX_ITEMS = len(self.cache_data.items())
+        MAX_ITEMS = len(self.cache_data)
         if not key or not item:
             pass
         elif MAX_ITEMS > BaseCaching.MAX_ITEMS:
