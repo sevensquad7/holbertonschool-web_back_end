@@ -22,7 +22,7 @@ class BasicCache(BaseCaching):
         """
         if doesn’t exist, return none
         """
-        if key not in self.cache_data.keys():
+        if not key or key not in self.cache_data.keys():
             return None
         else:
             return self.cache_data[key]
