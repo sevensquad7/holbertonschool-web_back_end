@@ -19,16 +19,16 @@ class FIFOCache(BaseCaching):
         """
         if doesn’t exist, not do anything
         """
-        MAX_ITEMS = len(self.cache_data)
-        if not key or not item:
+        if key is None or item is None:
             return
-        if MAX_ITEMS >= BaseCaching.MAX_ITEMS:
-            ret_val = list(self.cache_data)[0]
-            print('DISCARD: ', ret_val)
-            self.cache_data.pop(ret_val)
-        
+        if (
+            len(self.cache_data.items()) == BaseCaching.MAX_ITEMS
+            and (key not in self.cache_data.keys())
+        ):
+            firstItem = list(self.cache_data)[0]
+            print("DISCARD:", firstItem)
+            self.cache_data.pop(firstItem)
         self.cache_data[key] = item
-
     def get(self, key):
         """
         if doesn’t exist, return none
