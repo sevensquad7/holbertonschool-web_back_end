@@ -9,6 +9,8 @@ class LIFOCache(BaseCaching):
     """
     LIFOCache class
     """
+    LAST_ITEM = ""
+
     def __init__(self):
         """
         don’t forget to call the parent init: super().__init__()
@@ -25,10 +27,11 @@ class LIFOCache(BaseCaching):
             len(self.cache_data.items()) == BaseCaching.MAX_ITEMS
             and (key not in self.cache_data.keys())
         ):
-            lastItem = list(self.cache_data)[len(self.cache_data.items())-1]
+            lastItem = self.LAST_ITEM
             print("DISCARD:", lastItem)
             self.cache_data.pop(lastItem)
         self.cache_data[key] = item
+        self.LAST_ITEM = key
 
     def get(self, key):
         """
