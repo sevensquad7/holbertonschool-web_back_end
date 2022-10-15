@@ -21,13 +21,13 @@ class FIFOCache(BaseCaching):
         """
         MAX_ITEMS = len(self.cache_data)
         if not key or not item:
-            pass
-        elif MAX_ITEMS >= BaseCaching.MAX_ITEMS:
+            return
+        if MAX_ITEMS >= BaseCaching.MAX_ITEMS:
             ret_val = list(self.cache_data)[0]
             print('DISCARD: ', ret_val)
             self.cache_data.pop(ret_val)
-        else:
-            self.cache_data[key] = item
+        
+        self.cache_data[key] = item
 
     def get(self, key):
         """
