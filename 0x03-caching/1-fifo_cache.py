@@ -29,6 +29,7 @@ class FIFOCache(BaseCaching):
             print("DISCARD:", firstItem)
             self.cache_data.pop(firstItem)
         self.cache_data[key] = item
+
     def get(self, key):
         """
         if doesn’t exist, return none
