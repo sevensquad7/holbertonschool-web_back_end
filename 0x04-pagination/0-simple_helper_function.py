@@ -4,7 +4,7 @@ index_range is a pagination function
 """
 
 
-def index_range(page: int, page_size:int) -> tuple:
+def index_range(page: int, page_size: int) -> tuple:
     """
     Page numbers are 1-indexed, i.e. the first page is page 1.
     """
