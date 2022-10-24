@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """ Authentication
 """
-from queue import Empty
 from typing import List, TypeVar
 from flask import request
 
@@ -30,7 +29,11 @@ class Auth():
     def authorization_header(self, request=None) -> str:
         """ method authorization_header
         """
-        return None
+        if request is None:
+            return None
+        if not request.header.get("Authorization"):
+            return None
+        return request.header.get("Authorization")
 
     def current_user(self, request=None) -> TypeVar('User'):
         """ method current_user
