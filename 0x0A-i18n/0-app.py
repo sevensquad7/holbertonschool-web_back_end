@@ -14,6 +14,7 @@ class Config(object):
     """
     LANGUAGES = ['en', 'es']
 
+
 @app.route("/", methods=['GET'])
 def helloWorld():
     """
