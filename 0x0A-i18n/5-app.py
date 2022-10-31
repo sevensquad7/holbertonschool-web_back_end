@@ -37,6 +37,9 @@ def get_locale():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
+app.config.from_object(Config)
+
+
 def get_user():
     ''' returns user from mocked db '''
     login_as = request.args.get("login_as", False)
@@ -52,9 +55,6 @@ def before_request():
     ''' self descriptive '''
     user = get_user()
     g.user = user
-
-
-app.config.from_object(Config)
 
 
 @app.route("/", methods=['GET'])
