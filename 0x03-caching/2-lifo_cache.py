@@ -1,43 +1,30 @@
-#!/usr/bin/python3
-"""
-LIFOCache is a caching system
-"""
+#!/usr/bin/env python3
+""" Python caching systems """
+
 from base_caching import BaseCaching
 
 
 class LIFOCache(BaseCaching):
-    """
-    LIFOCache class
-    """
-    LAST_ITEM = ""
+    """ LIFO caching system """
 
     def __init__(self):
-        """
-        don’t forget to call the parent init: super().__init__()
-        """
+        ''' Initialize class instance. '''
         super().__init__()
+        self.last_key = ''
 
     def put(self, key, item):
-        """
-        if doesn’t exist, not do anything
-        """
-        if key is None or item is None:
-            return
-        if (
-            len(self.cache_data.items()) == BaseCaching.MAX_ITEMS
-            and (key not in self.cache_data.keys())
-        ):
-            lastItem = self.LAST_ITEM
-            print("DISCARD:", lastItem)
-            self.cache_data.pop(lastItem)
-        self.cache_data[key] = item
-        self.LAST_ITEM = key
+        """ Add an item in the cache """
+        if key and item:
+            self.cache_data[key] = item
+            if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+                print("DISCARD: {}".format(self.last_key))
+                self.cache_data.pop(self.last_key)
+            self.last_key = key
 
     def get(self, key):
-        """
-        if doesn’t exist, return none
-        """
-        if key not in self.cache_data.key():
+        """ Return the value linked """
+        if key is None or self.cache_data.get(key) is None:
             return None
-        else:
-            return self.cache_data[key]
+        if key in self.cache_data:
+            value = self.cache_data[key]
+            return value
