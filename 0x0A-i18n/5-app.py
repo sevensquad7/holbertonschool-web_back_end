@@ -1,12 +1,21 @@
 #!/usr/bin/env python3
+""" Basic Flask app
 """
-Welcome Holberton
-"""
-from flask import Flask, render_template, g, request
+from flask import Flask, render_template, request, g
 from flask_babel import Babel
+
 app = Flask(__name__)
 babel = Babel(app)
 
+
+class Config(object):
+    ''' babel config class '''
+    LANGUAGES = ["en", "fr"]
+
+
+app.config.from_object(Config)
+Babel.default_locale = 'en'
+Babel.default_timezone = 'UTC'
 
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
@@ -16,13 +25,13 @@ users = {
 }
 
 
-class Config(object):
-    """
-    language config
-    """
-    LANGUAGES = ["en", "fr"]
-    BABEL_DEFAULT_LOCALE = 'en'
-    BABEL_DEFAULT_TIMEZONE = 'UTC'
+@babel.localeselector
+def get_locale():
+    ''' get locale from request '''
+    locale = request.args.get("locale")
+    if locale:
+        return locale
+    return request.accept_languages.best_match(Config.LANGUAGES)
 
 
 def get_user():
@@ -42,27 +51,10 @@ def before_request():
     g.user = user
 
 
-@babel.localeselector
-def get_locale():
-    """
-    the best match with our supported languages.
-    """
-    locale = request.args.get("locale")
-    if locale in Config.LANGUAGES:
-        return locale
-
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
-
-
-app.config.from_object(Config)
-
-
-@app.route("/", methods=['GET'])
-def helloWorld():
-    """
-    Hello world
-    """
-    return render_template('5-index.html')
+@app.route("/", methods=["GET"])
+def index():
+    """ Returns index """
+    return render_template("5-index.html")
 
 
 if __name__ == "__main__":
