@@ -1,5 +1,6 @@
+-- Project Mysql Advanced
+-- Web back end
 DELIMITER $$
-
 CREATE PROCEDURE AddBonus(
     IN user_id INT ,
     project_name VARCHAR(255),

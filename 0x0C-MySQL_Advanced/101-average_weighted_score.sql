@@ -1,3 +1,5 @@
+-- Project Mysql Advanced
+-- Web back end
 DELIMITER $$
 DROP PROCEDURE IF EXISTS ComputeAverageWeightedScoreForUsers$$
 CREATE PROCEDURE ComputeAverageWeightedScoreForUsers()

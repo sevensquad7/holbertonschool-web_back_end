@@ -1,3 +1,5 @@
+-- Project Mysql Advanced
+-- Web back end
 CREATE TRIGGER decreasse_quantity
 AFTER INSERT ON orders
 FOR EACH ROW UPDATE items

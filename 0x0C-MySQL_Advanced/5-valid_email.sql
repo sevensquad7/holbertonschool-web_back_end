@@ -1,3 +1,5 @@
+-- Project Mysql Advanced
+-- Web back end
 DELIMITER $$
 DROP TRIGGER IF EXISTS rest_valid_email;
 CREATE TRIGGER rest_valid_email
