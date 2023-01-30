@@ -1,7 +1,16 @@
 export default function iterateThroughObject(reportWithIterator) {
-    const result = [];
-    for (const rep of reportWithIterator) {
-        result.push(rep);
+  let newStr = '';
+  let control = true;
+
+  for (const employee of reportWithIterator) {
+    if (control) {
+      newStr += employee;
+      control = false;
+    } else {
+      newStr += ` | ${employee}`;
     }
-    return result.join(' | ');
+  }
+
+  return newStr;
 }
+
